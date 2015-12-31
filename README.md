@@ -30,14 +30,14 @@ Configure /etc/resolv.conf file with default values
 ```
 - hosts: all
   roles:
-    - { role: kbrebanov.resolv_conf }
+    - { role: blackstar257.resolv }
 ```
 
 Configure /etc/resolv.conf file specifying nameservers and a search domain
 ```
 - hosts: all
   roles:
-    - { role: kbrebanov.resolv_conf, resolv_conf_nameservers: ['8.8.4.4', '8.8.8.8'], resolv_conf_search_domains: ['example.com'] }
+    - { role: kbrebanov.resolv, resolv_conf_nameservers: ['8.8.4.4', '8.8.8.8'], resolv_conf_search_domains: ['example.com'] }
 ```
 
 License
@@ -48,4 +48,5 @@ BSD
 Author Information
 ------------------
 
-Kevin Brebanov
+Original: Kevin Brebanov
+Forked: Kyle
