@@ -37,7 +37,7 @@ Configure /etc/resolv.conf file specifying nameservers and a search domain
 ```
 - hosts: all
   roles:
-    - { role: kbrebanov.resolv, resolv_conf_nameservers: ['8.8.4.4', '8.8.8.8'], resolv_conf_search_domains: ['example.com'] }
+    - { role: blackstar257.resolv, resolv_conf_nameservers: ['8.8.4.4', '8.8.8.8'], resolv_conf_search_domains: ['example.com'] }
 ```
 
 License
@@ -48,5 +48,5 @@ BSD
 Author Information
 ------------------
 
-Original: Kevin Brebanov
-Forked: Kyle
+Kevin Brebanov
+Forked by Blackstar
