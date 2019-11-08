@@ -11,6 +11,9 @@ lint:
   name: yamllint
   options:
     config-file: molecule/default/yaml-lint.yml
+platforms:
+  - name: instance
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
 provisioner:
   name: ansible
   lint:
