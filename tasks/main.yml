@@ -5,7 +5,7 @@
   tags: ["resolv_conf"]
 
 - name: create /etc/resolv.conf configuration
-  become: yes
+  become: true
   template:
     src: resolv.conf.j2
     dest: /etc/resolv.conf

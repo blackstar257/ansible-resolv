@@ -6,7 +6,7 @@
   tags: ["resolv_conf"]
 
 - name: remove /etc/resolv.conf if symbolic link
-  become: yes
+  become: true
   file:
     path: /etc/resolv.conf
     state: absent
@@ -14,7 +14,7 @@
   tags: ["resolv_conf"]
 
 - name: create dhclient hook to prevent it from updating /etc/resolv.conf
-  become: yes
+  become: true
   copy:
     src: nodnsupdate
     dest: /etc/dhcp/dhclient-enter-hooks.d/nodnsupdate
