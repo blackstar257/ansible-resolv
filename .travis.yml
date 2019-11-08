@@ -1,42 +1,26 @@
 ---
-sudo: required
-dist: trusty
+language: python
+services: docker
 
-language: generic
-
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y python python-pip
+env:
+  global:
+    - ROLE_NAME: resolv
+  matrix:
+    - MOLECULE_DISTRO: centos7
+    - MOLECULE_DISTRO: centos6
+    - MOLECULE_DISTRO: ubuntu1804
+    - MOLECULE_DISTRO: debian9
 
 install:
-  # Install ansible
-  - sudo pip install ansible
+  - pip install molecule docker
 
-  # Check ansible version
-  - ansible --version
-
-  # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=../' >ansible.cfg
-
-  # Install role dependencies
-  # ...
+before_script:
+  - cd ../
+  - mv ansible-$ROLE_NAME blackstar257.$ROLE_NAME
+  - cd blackstar257.$ROLE_NAME
 
 script:
-  # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
-
-  # Run the role/playbook with ansible-playbook
-  - ansible-playbook tests/test.yml -i tests/inventory --connection=local --become
-
-  # Run the role/playbook again, checking to make sure it's idempotent
-  - >
-    ansible-playbook tests/test.yml -i tests/inventory --connection=local --become
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-
-  # Playbook specific tests
-  # ...
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
