@@ -1,7 +1,7 @@
 # Ansible Role: resolv
 
 [![Ansible Role](https://img.shields.io/badge/role-blackstar257.resolv-blue.svg)](https://galaxy.ansible.com/blackstar257/resolv/)
-[![Build Status](https://travis-ci.org/blackstar257/ansible-resolv.svg?branch=master)](https://travis-ci.org/blackstar257/ansible-resolv)
+[![Build Status](https://travis-ci.com/blackstar257/ansible-resolv.svg?branch=master)](https://travis-ci.com/blackstar257/ansible-resolv)
 
 Configures /etc/resolv.conf
 
