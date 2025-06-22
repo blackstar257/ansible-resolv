@@ -1,14 +1,34 @@
 # {{ ansible_managed }}
-{% for option in resolv_conf_options %}
-{% if option %}
-option {{ option }}
+# This file is managed by Ansible - manual changes will be overwritten
+#
+# DNS resolver configuration
+# See man 5 resolv.conf for details
+
+{% if resolv_domain %}
+# Local domain name
+domain {{ resolv_domain }}
+
 {% endif %}
-{% endfor %}
-{% for search_domain in resolv_conf_search_domains %}
-{% if search_domain %}
-search {{ search_domain }}
+{% if resolv_search and resolv_search | reject('equalto', '') | list | length > 0 %}
+# Search domains for hostname resolution (up to 6 domains)
+search {{ resolv_search | reject('equalto', '') | join(' ') }}
+
 {% endif %}
-{% endfor %}
-{% for nameserver in resolv_conf_nameservers %}
+# DNS nameservers (in order of preference, up to 3)
+{% for nameserver in resolv_nameservers[:3] %}
 nameserver {{ nameserver }}
 {% endfor %}
+
+{% if resolv_sortlist %}
+# Sort list for address ordering
+{% if resolv_sortlist is string %}
+sortlist {{ resolv_sortlist }}
+{% elif resolv_sortlist is iterable %}
+sortlist {{ resolv_sortlist | join(' ') }}
+{% endif %}
+
+{% endif %}
+{% if resolv_options and resolv_options | length > 0 %}
+# Resolver options
+options {{ resolv_options | join(' ') }}
+{% endif %}

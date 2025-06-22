@@ -1,23 +1,35 @@
----
 dependencies: []
-
 galaxy_info:
   author: blackstar257
-  description: Configures /etc/resolv.conf
+  description: Configures /etc/resolv.conf for DNS resolution
   company: None
   license: MIT
-  min_ansible_version: 1.8
+  min_ansible_version: "2.10"
   platforms:
     - name: EL
       versions:
-        - all
+        - "7"
+        - "8"
+        - "9"
     - name: Ubuntu
       versions:
-        - all
+        - bionic
+        - focal
+        - jammy
+        - noble
     - name: Debian
       versions:
-        - all
+        - buster
+        - bullseye
+        - bookworm
+    - name: Fedora
+      versions:
+        - "37"
+        - "38"
+        - "39"
+        - "40"
   galaxy_tags:
     - dns
     - resolv
     - system
+    - networking

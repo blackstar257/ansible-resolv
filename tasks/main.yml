@@ -1,15 +1,14 @@
----
-- name: include ubuntu extra work
-  include: Ubuntu.yml
+- name: Include Ubuntu-specific tasks
+  include_tasks: Ubuntu.yml
   when: ansible_distribution == "Ubuntu"
   tags: ["resolv_conf"]
-
-- name: create /etc/resolv.conf configuration
+- name: Create /etc/resolv.conf configuration
   become: true
   template:
     src: resolv.conf.j2
     dest: /etc/resolv.conf
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
+    backup: yes
   tags: ["resolv_conf"]
