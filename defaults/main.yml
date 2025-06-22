@@ -1,14 +1,15 @@
+---
 # DNS nameservers to configure in /etc/resolv.conf (up to 3 nameservers)
 resolv_nameservers:
   - 1.1.1.1 # Cloudflare DNS
   - 1.0.0.1 # Cloudflare DNS secondary
 # Local domain name
-resolv_domain: ''
+resolv_domain: ""
 # Search domains for hostname resolution (up to 6 domains)
 resolv_search:
   - "{{ ansible_domain | default('') }}"
 # List of IP-address and netmask pairs to sort addresses returned by gethostbyname
-resolv_sortlist: ''
+resolv_sortlist: ""
 # Resolver options (man 5 resolv.conf for details)
 resolv_options:
   - rotate # Rotate through nameservers

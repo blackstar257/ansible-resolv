@@ -1,3 +1,4 @@
+---
 - name: Check if /etc/resolv.conf exists and get file info
   ansible.builtin.stat:
     path: /etc/resolv.conf
