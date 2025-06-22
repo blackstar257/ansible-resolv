@@ -1,8 +1,6 @@
 # Ansible Role: Resolv
 
 [![CI](https://github.com/blackstar257/ansible-resolv/workflows/CI/badge.svg)](https://github.com/blackstar257/ansible-resolv/actions?query=workflow%3ACI)
-[![Ansible Role](https://img.shields.io/ansible/role/d/blackstar257.resolv)](https://galaxy.ansible.com/blackstar257/resolv/)
-[![Ansible Galaxy Downloads](https://img.shields.io/ansible/role/dt/blackstar257.resolv)](https://galaxy.ansible.com/blackstar257/resolv/)
 
 An Ansible role that configures `/etc/resolv.conf` for DNS resolution on Linux systems.
 
