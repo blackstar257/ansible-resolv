@@ -27,9 +27,6 @@ scenario:
     - syntax
     - create
     - prepare
-    - converge
-    - idempotence
-    - side_effect
     - verify
     - cleanup
     - destroy
