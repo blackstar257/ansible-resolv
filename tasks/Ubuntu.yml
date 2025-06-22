@@ -1,18 +1,18 @@
 - name: Check if /etc/resolv.conf exists and get file info
-  stat:
+  ansible.builtin.stat:
     path: /etc/resolv.conf
   register: resolvconf
   tags: ["resolv_conf"]
 - name: Remove /etc/resolv.conf if it's a symbolic link
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/resolv.conf
     state: absent
   when: resolvconf.stat.exists and resolvconf.stat.islnk
   tags: ["resolv_conf"]
 - name: Create dhclient hook to prevent DNS updates
   become: true
-  copy:
+  ansible.builtin.copy:
     src: nodnsupdate
     dest: /etc/dhcp/dhclient-enter-hooks.d/nodnsupdate
     owner: root

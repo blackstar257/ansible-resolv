@@ -1,14 +1,14 @@
 - name: Include Ubuntu-specific tasks
-  include_tasks: Ubuntu.yml
+  ansible.builtin.include_tasks: Ubuntu.yml
   when: ansible_distribution == "Ubuntu"
   tags: ["resolv_conf"]
 - name: Create /etc/resolv.conf configuration
   become: true
-  template:
+  ansible.builtin.template:
     src: resolv.conf.j2
     dest: /etc/resolv.conf
     owner: root
     group: root
     mode: "0644"
-    backup: yes
+    backup: true
   tags: ["resolv_conf"]
