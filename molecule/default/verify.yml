@@ -1,0 +1,38 @@
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check if /etc/resolv.conf exists
+      stat:
+        path: /etc/resolv.conf
+      register: resolv_conf_file
+    - name: Verify /etc/resolv.conf exists
+      assert:
+        that:
+          - resolv_conf_file.stat.exists
+        fail_msg: "/etc/resolv.conf should exist"
+    - name: Read /etc/resolv.conf content
+      slurp:
+        src: /etc/resolv.conf
+      register: resolv_content
+    - name: Verify nameservers are configured
+      assert:
+        that:
+          - "'nameserver 8.8.8.8' in resolv_content.content | b64decode"
+          - "'nameserver 8.8.4.4' in resolv_content.content | b64decode"
+        fail_msg: "Nameservers should be configured in /etc/resolv.conf"
+    - name: Verify domain is configured
+      assert:
+        that:
+          - "'domain example.com' in resolv_content.content | b64decode"
+        fail_msg: "Domain should be configured in /etc/resolv.conf"
+    - name: Verify search domains are configured
+      assert:
+        that:
+          - "'search example.com test.local' in resolv_content.content | b64decode"
+        fail_msg: "Search domains should be configured in /etc/resolv.conf"
+    - name: Verify options are configured
+      assert:
+        that:
+          - "'options rotate timeout:2' in resolv_content.content | b64decode"
+        fail_msg: "Options should be configured in /etc/resolv.conf"

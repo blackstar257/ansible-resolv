@@ -1,0 +1,20 @@
+---
+profile: production
+
+exclude_paths:
+  - .cache/
+  - .github/
+  - molecule/
+  - .ansible-lint
+  - .yamllint
+
+skip_list:
+  - yaml[line-length]  # Allow longer lines in some cases
+
+warn_list:
+  - experimental  # Allow experimental features
+  - no-changed-when  # Allow tasks without changed_when
+  - command-instead-of-module  # Allow command/shell when appropriate
+
+use_default_rules: true
+verbosity: 1 
